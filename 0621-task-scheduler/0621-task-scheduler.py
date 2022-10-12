@@ -11,7 +11,7 @@ class Solution:
             time += 1
             if heap:
                 cnt = 1 + heapq.heappop(heap)
-                if cnt != 0:
+                if cnt < 0:
                     q.append((cnt, time+n))
             if q and q[0][1] == time:
                 heapq.heappush(heap, q.popleft()[0])
