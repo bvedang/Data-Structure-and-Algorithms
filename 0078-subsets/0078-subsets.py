@@ -9,7 +9,7 @@ class Solution:
                 return
             sub.append(nums[i])
             subsequence(i+1, sub)
-            sub.remove(nums[i])
+            sub.pop()
             subsequence(i+1, sub)
         subsequence(0,sub)
         return res
