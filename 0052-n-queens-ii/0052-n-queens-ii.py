@@ -2,15 +2,14 @@ class Solution:
     def totalNQueens(self, n: int) -> int:
         if n == 1:
             return len([["Q"]])
-        res =[]
+        res =[0]
         cols = set()
         positive = set()
         negative = set()
         board = [["."]*n for i in range(n)]
         def helper(r):
             if r >= n:
-                copy = ["".join(row) for row in  board]
-                res.append(copy)
+                res[0] +=1
                 return
             for c in range(n):
                 if c in cols or (r+c) in positive or (r-c) in negative:
@@ -27,4 +26,4 @@ class Solution:
                 board[r][c] = "."
         
         helper(0)
-        return len(res)
+        return res[0]
