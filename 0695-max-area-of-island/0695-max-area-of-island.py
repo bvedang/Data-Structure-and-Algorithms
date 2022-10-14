@@ -1,6 +1,5 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        maxArea = 0
         visited =set()
         rows = len(grid)
         cols = len(grid[0])
@@ -12,10 +11,8 @@ class Solution:
             return 1+dfs(r,c+1)+dfs(r,c-1)+dfs(r+1,c)+dfs(r-1,c)
             
             
-            
+        maxArea = 0 
         for r in range(rows):
             for c in range(cols):
                     maxArea = max(maxArea,dfs(r,c))
-                    
-                    
         return maxArea
