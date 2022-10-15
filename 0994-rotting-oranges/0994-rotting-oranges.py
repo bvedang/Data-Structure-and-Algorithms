@@ -10,7 +10,8 @@ class Solution:
                 ## getting locatin of all rotten oranges
                 if grid[row][col] == 2:
                     q.append([row,col])
-        
+        if fresh == 0:
+            return 0
         neighbour = [(0,1),(0,-1),(1,0),(-1,0)]
         while q and fresh > 0:
             for i in range(len(q)):
