@@ -25,7 +25,7 @@ class Solution:
         
         for r in range(rows):
             for c in range(cols):
-                if board[r][c] != "T":
+                if board[r][c] == "O":
                     board[r][c] = "X"
         
         for r in range(rows):
