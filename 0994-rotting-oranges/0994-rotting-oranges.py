@@ -12,6 +12,8 @@ class Solution:
                     q.append([row,col])
         if fresh == 0:
             return 0
+        if len(q) == 0:
+            return -1
         neighbour = [(0,1),(0,-1),(1,0),(-1,0)]
         while q and fresh > 0:
             for i in range(len(q)):
