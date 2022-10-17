@@ -13,7 +13,7 @@ class Solution:
                 return False
             visited.add(crs) 
             for neighbor in premap[crs]:
-                if dfs(neighbor) == False:
+                if not dfs(neighbor):
                     return False
             visited.remove(crs)
             path.add(crs)
