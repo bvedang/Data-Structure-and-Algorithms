@@ -1,6 +1,6 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        
+        ## Topological sort
         adj ={}
         for i in range(numCourses):
             if i not in adj:
@@ -20,7 +20,6 @@ class Solution:
                     return False
                 adj[node].pop(adj[node].index(neighbor))
             visited.remove(node)
-            # adj[node].clear()
             return True
         
         for i in range(numCourses):
