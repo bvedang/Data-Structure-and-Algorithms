@@ -18,8 +18,9 @@ class Solution:
             for neighbor in adj[node]:
                 if not cycle(neighbor, visited, path):
                     return False
+                adj[node].pop(adj[node].index(neighbor))
             visited.remove(node)
-            adj[node].clear()
+            # adj[node].clear()
             return True
         
         for i in range(numCourses):
