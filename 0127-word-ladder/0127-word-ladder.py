@@ -10,7 +10,6 @@ class Solution:
                 patter = word[:j] + "*" + word[j+1:]                            ## getting all patter hit -> h*t, *ot, ho* and all its adjacent words
                 graph[patter].append(word)
         
-        print(graph)
         
         visited = set()
         visited.add(beginWord)
