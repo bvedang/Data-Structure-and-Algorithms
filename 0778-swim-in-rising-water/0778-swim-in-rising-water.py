@@ -11,7 +11,7 @@ class Solution:
             w1, si, sj = heapq.heappop(minheap)
             mincost = max(mincost,w1)
             if si == n-1 and sj == n-1:
-                break
+                return mincost
             if (si,sj) in visited:
                 continue
             visited.add((si,sj))
@@ -21,5 +21,3 @@ class Solution:
                 if newsr < 0 or newsr == n or newdc < 0 or newdc == n or (newsr,newdc) in visited:
                     continue # we dont want to get index out of bound
                 heapq.heappush(minheap,(max(w1,grid[newsr][newdc]), newsr, newdc))
-                
-        return mincost
