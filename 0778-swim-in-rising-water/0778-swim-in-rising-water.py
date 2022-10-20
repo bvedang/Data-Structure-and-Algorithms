@@ -20,10 +20,6 @@ class Solution:
                 newdc = sj + dc
                 if newsr < 0 or newsr == n or newdc < 0 or newdc == n or (newsr,newdc) in visited:
                     continue # we dont want to get index out of bound
-                if w1 >= grid[newsr][newdc]:
-                    heapq.heappush(minheap,(w1, newsr,newdc))
-                    
-                else:
-                    heapq.heappush(minheap, (grid[newsr][newdc], newsr,newdc))
+                heapq.heappush(minheap,(max(w1,grid[newsr][newdc]), newsr, newdc))
                 
         return mincost
