@@ -1,5 +1,5 @@
 class Solution:
-    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int: # time O(E*k) space O(V)
         prices = [float("inf")]*n
         prices[src] = 0
         for i in range(k+1):
