@@ -1,5 +1,5 @@
 class Solution:
-    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+    def minCostConnectPoints(self, points: List[List[int]]) -> int: # time O(N^2 Log N) Space N^2
         adj = defaultdict(list)
         for i in range(len(points)):
             x1, y1 = points[i]
