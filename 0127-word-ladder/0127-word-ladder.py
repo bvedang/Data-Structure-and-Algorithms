@@ -2,30 +2,28 @@ class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:
             return 0
-            
+        adj = defaultdict(list)
         wordList.append(beginWord)
-        graph = defaultdict(list)
+        res = 1
         for word in wordList:
             for j in range(len(word)):
-                patter = word[:j] + "*" + word[j+1:]                            ## getting all patter hit -> h*t, *ot, ho* and all its adjacent words
-                graph[patter].append(word)
-        
-        
+                patter = word[:j] + "*" + word[j+1:]
+                adj[patter].append(word)
         visited = set()
         visited.add(beginWord)
         q = deque([beginWord])
-        res = 1
         while q:
             for i in range(len(q)):
-                node = q.popleft()
-                if node == endWord:
+                word = q.popleft()
+                if word == endWord:
                     return res
-                for j in range(len(node)):
-                    patter = node[:j] + "*" + node[j+1:]
-                    for neighbor in graph[patter]:
-                        if neighbor not in visited:
-                            visited.add(neighbor)
-                            q.append(neighbor)
+                visited.add(word)
+                for j in range(len(word)):
+                    patter = word[:j] + "*" + word[j+1:]
+                    for neigh in adj[patter]:
+                        if neigh not in visited:
+                            visited.add(neigh)
+                            q.append(neigh)
             res += 1
-            
+        
         return 0
