@@ -1,7 +1,7 @@
 class Solution:
-    def swimInWater(self, grid: List[List[int]]) -> int:
-        if len(grid) == 0:
-            return 0
+    def swimInWater(self, grid: List[List[int]]) -> int: ## Time complexity -> N^2 log N space = N^2
+        if len(grid) == 1:
+            return grid[0][0]
         n = len(grid)
         visited = set()
         minheap = [(grid[0][0],0,0)]
