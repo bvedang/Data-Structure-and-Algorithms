@@ -1,14 +1,25 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        #Top down Approcah Time O(N) space O(N) cache
+        #Top down Approcah with Space Optimization Time O(N) space O(1) 
         if n <2:
             return 1
-        res = [1,1]
+        prev = prev2 = 1
         i = 2
-        while i <= n:
-            res.append(res[i-1] + res[i-2])
-            i +=1
-        return res[n]
+        while(i <= n):
+            curr = prev+prev2
+            prev2 = prev
+            prev = curr
+            i += 1
+        return prev
+        #Top down Approcah Time O(N) space O(N) cache
+        # if n <2:
+        #     return 1
+        # res = [1,1]
+        # i = 2
+        # while i <= n:
+        #     res.append(res[i-1] + res[i-2])
+        #     i +=1
+        # return res[n]
         # Memoization Method  Time  O(N)  Space O(2*N) stack space, cache
         # cache = {}
         # def helper(n, cache):
