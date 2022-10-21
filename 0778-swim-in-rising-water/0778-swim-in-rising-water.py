@@ -1,23 +1,26 @@
 class Solution:
-    def swimInWater(self, grid: List[List[int]]) -> int: ## Time complexity -> N^2 log N space = N^2
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        n = len(grid)
         if len(grid) == 1:
             return grid[0][0]
-        n = len(grid)
+        
+        minheap = [(grid[0][0],0, 0)]
+        time = 0
         visited = set()
-        minheap = [(grid[0][0],0,0)]
-        mincost = 0
-        directions = [(1,0),(-1,0),(0,1),(0,-1)]
+        direction = [(1,0), (-1,0), (0,1),(0,-1)]
         while minheap:
-            w1, si, sj = heapq.heappop(minheap)
-            mincost = max(mincost,w1)
-            if si == n-1 and sj == n-1:
-                return mincost
-            if (si,sj) in visited:
+            cost, r,c = heapq.heappop(minheap)
+            time = max(cost,time)
+            if r == n-1 and c == n-1:
+                return time
+            if (r,c) in visited:
                 continue
-            visited.add((si,sj))
-            for dr,dc in directions:
-                newsr = si + dr
-                newdc = sj + dc
-                if newsr < 0 or newsr == n or newdc < 0 or newdc == n or (newsr,newdc) in visited:
-                    continue # we dont want to get index out of bound
-                heapq.heappush(minheap,(max(w1,grid[newsr][newdc]), newsr, newdc))
+            visited.add((r,c))
+            
+            for dr, dc in direction:
+                newrow = dr + r
+                newcol = dc + c
+                if newrow < 0 or newrow == n or newcol < 0  or newcol == n or (newrow,newcol) in visited:
+                    continue
+                heapq.heappush(minheap, (max(cost, grid[newrow][newcol]), newrow,newcol))
+                
