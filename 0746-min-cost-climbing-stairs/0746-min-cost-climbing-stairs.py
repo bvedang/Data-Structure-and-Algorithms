@@ -1,6 +1,6 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        
+        # Top bottom Space optimization Time complexity O(N) space O(1)
         if len(cost) <= 2:
             return min(cost[1], cost[0])
         step1 = step2 = 0
