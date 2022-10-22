@@ -4,15 +4,27 @@ class Solution:
             return nums[0]
         if len(nums) == 2:
             return max(nums[0], nums[1])
-        cache = {0:nums[0]}
-        for i in range(1,len(nums)):
-            if i-2 < 0:
-                take = nums[i] + 0
-            else:
-                take = nums[i] + cache[i-2]
-            nottake = cache[i-1]
-            cache[i] = max(take, nottake)
-        return cache[len(nums)-1]
+        ## Tabulation (Top bottom approach) Pick not-pick solution with Memoization Time O(N) Space O(1)
+        prev = nums[0]
+        prev2 = 0
+        for i in range(1, len(nums)):
+            take = nums[i] + prev2
+            nottake = prev
+            curr = max(take,nottake)
+            prev2 = prev
+            prev = curr
+        return prev
+        
+        ## Tabulation (Top bottom approach) Pick not-pick solution with Memoization Time O(N) Space O(N)
+        # cache = {0:nums[0]}
+        # for i in range(1,len(nums)):
+        #     if i-2 < 0:
+        #         take = nums[i] + 0
+        #     else:
+        #         take = nums[i] + cache[i-2]
+        #     nottake = cache[i-1]
+        #     cache[i] = max(take, nottake)
+        # return cache[len(nums)-1]
             
         ## Recursion Pick not-pick solution with Memoization Time O(N) Space O(N)+auxilary stackspace
         # def helper(i):
