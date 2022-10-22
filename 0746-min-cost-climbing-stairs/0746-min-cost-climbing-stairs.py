@@ -12,7 +12,6 @@ class Solution:
             i += 1
         return step1
         
-        
         # Top bottom Time complexity O(N) space O(N)
         # if len(cost) <= 2:
         #     return min(cost[1], cost[0])
