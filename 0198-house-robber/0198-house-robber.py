@@ -8,9 +8,7 @@ class Solution:
         prev = nums[0]
         prev2 = 0
         for i in range(1, len(nums)):
-            take = nums[i] + prev2
-            nottake = prev
-            curr = max(take,nottake)
+            curr = max(nums[i] + prev2,prev)
             prev2 = prev
             prev = curr
         return prev
