@@ -20,7 +20,7 @@ class Solution:
                 else:
                     temp[c] = dp[c] + temp[c-1]
             dp = temp
-        return dp[n-1]
+        return dp[-1]
          ## Top down approach Time O(M*N) space O(M*N)
 #         for r in range(m):
 #             if obstacleGrid[r][0] == 1:
