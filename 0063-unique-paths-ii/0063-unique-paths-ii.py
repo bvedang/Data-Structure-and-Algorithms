@@ -4,23 +4,40 @@ class Solution:
             return 0
         n = len(obstacleGrid[0])
         m = len(obstacleGrid)
-        dp = [[0]*n for i in range(m)]
-        for r in range(m):
-            if obstacleGrid[r][0] == 1:
-                break
-            dp[r][0] = 1
-            
+        dp = [0]*n
         for c in range(n):
-            if obstacleGrid[0][c] == 1:
+            if obstacleGrid[0][c]:
                 break
-            dp[0][c] = 1
+            dp[c] = 1
+        
         for r in range(1,m):
-            for c in range(1, n):
+            temp = [0]*n
+            for c in range(0,n):
                 if obstacleGrid[r][c] == 1:
                     continue
-                dp[r][c] = dp[r-1][c] + dp[r][c-1]
-        print(dp)
-        return dp[m-1][n-1]
+                if c == 0:
+                    temp[c] = dp[c]
+                else:
+                    temp[c] = dp[c] + temp[c-1]
+            dp = temp
+        return dp[n-1]
+         ## Top down approach Time O(M*N) space O(M*N)
+#         for r in range(m):
+#             if obstacleGrid[r][0] == 1:
+#                 break
+#             dp[r][0] = 1
+            
+#         for c in range(n):
+#             if obstacleGrid[0][c] == 1:
+#                 break
+#             dp[0][c] = 1
+#         for r in range(1,m):
+#             for c in range(1, n):
+#                 if obstacleGrid[r][c] == 1:
+#                     continue
+#                 dp[r][c] = dp[r-1][c] + dp[r][c-1]
+#         print(dp)
+#         return dp[m-1][n-1]
                 
          ## Recursion Solution with Memoization Time O(M*N) Space O(M) + O(M+N)
 #         def helper(r,c):
