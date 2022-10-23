@@ -5,17 +5,35 @@ class Solution:
         n = len(obstacleGrid[0])
         m = len(obstacleGrid)
         dp = [[0]*n for i in range(m)]
-        def helper(r,c):
-            if r<0 or c<0 or obstacleGrid[r][c] == 1:
-                return 0
-            if r == 0 and c ==0:
-                return 1
-            if dp[r][c] != 0:
-                return dp[r][c]
+        for r in range(m):
+            if obstacleGrid[r][0] == 1:
+                break
+            dp[r][0] = 1
             
-            dp[r][c] = helper(r-1,c) + helper(r,c-1)
-            return dp[r][c]
-        return helper(len(obstacleGrid)-1,len(obstacleGrid[0])-1)
+        for c in range(n):
+            if obstacleGrid[0][c] == 1:
+                break
+            dp[0][c] = 1
+        for r in range(1,m):
+            for c in range(1, n):
+                if obstacleGrid[r][c] == 1:
+                    continue
+                dp[r][c] = dp[r-1][c] + dp[r][c-1]
+        print(dp)
+        return dp[m-1][n-1]
+                
+         ## Recursion Solution with Memoization Time O(M*N) Space O(M) + O(M+N)
+#         def helper(r,c):
+#             if r<0 or c<0 or obstacleGrid[r][c] == 1:
+#                 return 0
+#             if r == 0 and c ==0:
+#                 return 1
+#             if dp[r][c] != 0:
+#                 return dp[r][c]
+            
+#             dp[r][c] = helper(r-1,c) + helper(r,c-1)
+#             return dp[r][c]
+#         return helper(len(obstacleGrid)-1,len(obstacleGrid[0])-1)
     
         ## Recursion Solution Time O(2^M*N) Space O(M) + O(M+N)
 #          def helper(r,c):
