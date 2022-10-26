@@ -4,21 +4,38 @@ class Solution:
         m = len(grid)
         if m == 1 and n == 1:
             return grid[0][0]
-        cache = [[0]*n for i in range(m)]
-        for r in range(m):
+        row = [0]*n
+        for r in range(n):
             if r == 0:
-                cache[r][0] = grid[r][0]
-            cache[r][0] = grid[r][0] + cache[r-1][0]
-        for c in range(n):
-            if c == 0:
-                cache[0][c] = grid[0][c]
-            cache[0][c] = grid[0][c] + cache[0][c-1]
-        
+                row[r] = grid[0][r]
+            row[r] = grid[0][r] + row[r-1]
+        print(row)
         for r in range(1,m):
-            for c in range(1,n):
-                cache[r][c] = min(grid[r][c]+cache[r-1][c],grid[r][c]+cache[r][c-1])
+            temp = [0]*n
+            for c in range(n):
+                if c ==0:
+                    temp[c] = grid[r][c] + row[c]
+                else:
+                    temp[c] = min(temp[c-1]+ grid[r][c], row[c]+grid[r][c])
+            print(temp)
+            row = temp
+        return row[-1]
+#       Recursion Solution with memoization Time O(M*N) and space O(M*N) + On(m+n
+#         cache = [[0]*n for i in range(m)]
+#         for r in range(m):
+#             if r == 0:
+#                 cache[r][0] = grid[r][0]
+#             cache[r][0] = grid[r][0] + cache[r-1][0]
+#         for c in range(n):
+#             if c == 0:
+#                 cache[0][c] = grid[0][c]
+#             cache[0][c] = grid[0][c] + cache[0][c-1]
         
-        return cache[m-1][n-1]
+#         for r in range(1,m):
+#             for c in range(1,n):
+#                 cache[r][c] = min(grid[r][c]+cache[r-1][c],grid[r][c]+cache[r][c-1])
+        
+#         return cache[m-1][n-1]
 #       Recursion Solution with memoization Time O(M*N) and space O(M*N) + On(m+n)
 #         def helper(r,c):
 #             if r<0 or c<0:
