@@ -12,7 +12,6 @@ class Solution:
             for c in range(r,-1,-1):
                 
                 temp[c] = triangle[r][c] + min(cache[c], cache[c+1])
-            print(cache)
             cache = temp
         return cache[0]
         
