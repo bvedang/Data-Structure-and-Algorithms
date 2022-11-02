@@ -3,7 +3,7 @@ class Solution:
         m = len(triangle)
         n = len(triangle[m-1])
         cache = [0]*m
-        
+#         Top down approach with space optimization cache Time(O(N*N) ) Space O(N)
         for c in range(n):
             cache[c] = triangle[m-1][c]
         
@@ -14,8 +14,19 @@ class Solution:
                 temp[c] = triangle[r][c] + min(cache[c], cache[c+1])
             cache = temp
         return cache[0]
+#         Top down approach with cache Time(O(N*N) ) Space (O(N*N))
+#         cache = [0]*m
         
+#         for c in range(n):
+#             cache[c] = triangle[m-1][c]
         
+#         for r in range(m-2,-1,-1):
+#             temp = [0]*(r+1)
+#             for c in range(r,-1,-1):
+                
+#                 temp[c] = triangle[r][c] + min(cache[c], cache[c+1])
+#             cache = temp
+#         return cache[0]
         
         
         ## Recursion with memoization Time(O(N*N) n = rows) Space O(N*N)+O(N)
