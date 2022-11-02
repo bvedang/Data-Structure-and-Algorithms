@@ -1,26 +1,27 @@
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-#       Recursion Solution with memoization Time O(M*N) and space O(M*N) + O(n)
+
+     # Top Down solution Time O(M*N) and space O(M*N) + O(n)
         n = len(grid[0])
         m = len(grid)
-        if m == 1 and n == 1:
-            return grid[0][0]
         row = [0]*n
-        for r in range(n):
-            if r == 0:
-                row[r] = grid[0][r]
-            row[r] = grid[0][r] + row[r-1]
-        print(row)
+        for c in range(n):
+            if c == 0:
+                row[c] = grid[0][c]
+                continue
+            row[c] = grid[0][c]+ row[c-1]
+        
+        
         for r in range(1,m):
             temp = [0]*n
             for c in range(n):
-                if c ==0:
+                if c == 0:
                     temp[c] = grid[r][c] + row[c]
                 else:
-                    temp[c] = min(temp[c-1]+ grid[r][c], row[c]+grid[r][c])
-            print(temp)
+                    temp[c] = grid[r][c] + min(temp[c-1], row[c])
             row = temp
-        return row[-1]
+        
+        return row[n-1]
 #       Recursion Solution with memoization Time O(M*N) and space O(M*N) + On(m+n)
 #         cache = [[0]*n for i in range(m)]
 #         for r in range(m):
