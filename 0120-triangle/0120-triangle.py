@@ -2,16 +2,19 @@ class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         m = len(triangle)
         n = len(triangle[m-1])
-        cache = [[0]*i for i in range(1,m+1)]
+        cache = [0]*m
         
         for c in range(n):
-            cache[m-1][c] = triangle[m-1][c]
+            cache[c] = triangle[m-1][c]
         
         for r in range(m-2,-1,-1):
+            temp = [0]*(r+1)
             for c in range(r,-1,-1):
-                cache[r][c] = triangle[r][c] + min(cache[r+1][c], cache[r+1][c+1])
-        
-        return cache[0][0]
+                
+                temp[c] = triangle[r][c] + min(cache[c], cache[c+1])
+            print(cache)
+            cache = temp
+        return cache[0]
         
         
         
