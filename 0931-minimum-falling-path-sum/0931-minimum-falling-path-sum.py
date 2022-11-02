@@ -1,21 +1,39 @@
 class Solution:
     def minFallingPathSum(self, matrix: List[List[int]]) -> int:
         n = len(matrix)
-        cache = [[0]*n for i in range(n)]
+        cache = [0]*n
         for c in range(n):
-            cache[0][c] = matrix[0][c]
+            cache[c] = matrix[0][c]
         for r in range(1,n):
+            temp = [0]*n
             for c in range(n):
                 if c == 0:
-                    cache[r][c] = matrix[r][c] + min(cache[r-1][c], cache[r-1][c+1])
+                    temp[c] = matrix[r][c] + min(cache[c], cache[c+1])
                 elif c == n-1:
-                    cache[r][c] = matrix[r][c] + min(cache[r-1][c], cache[r-1][c-1])
+                    temp[c] = matrix[r][c] + min(cache[c], cache[c-1])
                 else:
-                    cache[r][c] = matrix[r][c] + min(cache[r-1][c], cache[r-1][c-1],cache[r-1][c+1])
+                    temp[c] = matrix[r][c] + min(cache[c], cache[c-1],cache[c+1])
+            cache = temp
         res = float("inf")
         for c in range(n):
-            res = min(res, cache[n-1][c])
+            res = min(res, cache[c])
         return res
+        
+#         Top Down appraoch Time O(N^2) Space O(N^2)
+        # for c in range(n):
+        #     cache[0][c] = matrix[0][c]
+        # for r in range(1,n):
+        #     for c in range(n):
+        #         if c == 0:
+        #             cache[r][c] = matrix[r][c] + min(cache[r-1][c], cache[r-1][c+1])
+        #         elif c == n-1:
+        #             cache[r][c] = matrix[r][c] + min(cache[r-1][c], cache[r-1][c-1])
+        #         else:
+        #             cache[r][c] = matrix[r][c] + min(cache[r-1][c], cache[r-1][c-1],cache[r-1][c+1])
+        # res = float("inf")
+        # for c in range(n):
+        #     res = min(res, cache[n-1][c])
+        # return res
         
 #         Recursion with Memoizatin Time(O(N^2)) Space O(N^2) + O(N)
 #         def helper(r,c):
