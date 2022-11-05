@@ -8,14 +8,12 @@ class Solution:
         for i in range(wt[0],W+1):
                 cache[i] = val[0]
         for i in range(1,n):
-            temp =[0]*(W+1)
             for capacity in range(W,-1,-1):
                 notpick = cache[capacity]
                 pick = float("-inf")
                 if capacity >= wt[i]:
                     pick = val[i] + cache[capacity-wt[i]]
-                temp[capacity] = max(pick,notpick)
-            cache = temp
+                cache[capacity] = max(pick,notpick)
         return cache[W]
         # def helper(i, capacity):
         #     if i == 0:
