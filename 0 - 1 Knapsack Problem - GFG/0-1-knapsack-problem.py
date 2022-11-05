@@ -4,17 +4,19 @@ class Solution:
     
     #Function to return max value that can be put in knapsack of capacity W.
     def knapSack(self,W, wt, val, n):
-        cache = [[0]*(W+1) for i in range(n)]
+        cache = [0]*(W+1)
         for i in range(wt[0],W+1):
-                cache[0][i] = val[0]
+                cache[i] = val[0]
         for i in range(1,n):
+            temp =[0]*(W+1)
             for capacity in range(W+1):
-                notpick = cache[i-1][capacity]
+                notpick = cache[capacity]
                 pick = float("-inf")
                 if capacity >= wt[i]:
-                    pick = val[i] + cache[i-1][capacity-wt[i]]
-                cache[i][capacity] = max(pick,notpick)
-        return cache[n-1][W]
+                    pick = val[i] + cache[capacity-wt[i]]
+                temp[capacity] = max(pick,notpick)
+            cache = temp
+        return cache[W]
         # def helper(i, capacity):
         #     if i == 0:
         #         if (capacity >= wt[0]):
