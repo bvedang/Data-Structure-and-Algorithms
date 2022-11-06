@@ -4,16 +4,18 @@ class Solution:
     def knapSack(self, N, W, val, wt):
         dp = {}
         for weight in range(W+1):
-            dp[(0,weight)] = val[0]*(weight//wt[0])
+            dp[weight] = val[0]*(weight//wt[0])
         
         for ind in range(1,N):
+            temp = {i:0 for i in range(W+1)}
             for weight in range(W+1):
-                nottake = dp[(ind-1, weight)]
+                nottake = dp[weight]
                 take = float("-inf")
                 if weight >= wt[ind]:
-                    take = val[ind] + dp[(ind,weight-wt[ind])]
-                dp[(ind,weight)] = max(take, nottake)
-        return dp[(N-1, W)]
+                    take = val[ind] + temp[weight-wt[ind]]
+                temp[weight] = max(take, nottake)
+            dp = temp
+        return dp[W]
         # def helper(ind, weight):
         #     if ind == 0:
         #         return val[0]*(weight//wt[0])
