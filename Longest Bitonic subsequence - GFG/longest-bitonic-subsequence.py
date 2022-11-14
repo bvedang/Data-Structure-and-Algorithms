@@ -9,14 +9,14 @@ class Solution:
 		        if nums[i] > nums[prev] and dp[i]<dp[prev]+1:
 		            dp[i] = 1+dp[prev]
 		    
-		dp1 = [1]*(n)
+		res = 0            
+		dp1 = [1]*n
 		for i in range(n-1,-1,-1):
 		    for prev in range(n-1,i,-1):
 		        if nums[i] > nums[prev] and dp1[i]<dp1[prev]+1:
 		            dp1[i] = 1+dp1[prev]
-		res = 1
-		for i in range(n):
 		    res = max(dp[i]+dp1[i]-1, res)
+	
 		return res
 
 
