@@ -1,1 +1,1 @@
-​
+dont just inset value 1 in wordKey, add 1 to value of wordKey[ord(char)-ord('a')]
