@@ -8,12 +8,10 @@ class Solution:
         while l<r:
             if lmax < rmax:
                 l += 1
-                lmax = max(height[l], lmax)
+                lmax = max(lmax,height[l])
                 water += lmax - height[l]
-                
             else:
                 r -= 1
-                rmax = max(height[r], rmax)
-                water += rmax - height[r]
-                
+                rmax = max(rmax,height[r])
+                water += rmax-height[r]
         return water
