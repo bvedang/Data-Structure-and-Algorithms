@@ -1,18 +1,13 @@
 class Solution:
     def checkValid(self, matrix: List[List[int]]) -> bool:
-        n = len(matrix)
-        rows = defaultdict(set)
+        rows= defaultdict(set)
         cols = defaultdict(set)
-        for row in range(n):
-            for col in range(n):
-                rows[row].add(matrix[row][col])
-                cols[col].add(matrix[row][col])                
-        
-        for row in rows.keys():
-            if len(rows[row]) < n:
-                return False
-        for col in cols.keys():
-            if len(cols[col]) < n:
-                return False
-        
+        n = len(matrix)
+        for r in range(n):
+            for c in range(n):
+                if matrix[r][c] in rows[r] or matrix[r][c] in cols[c]:
+                    return False
+                rows[r].add(matrix[r][c])
+                cols[c].add(matrix[r][c])
+                
         return True
