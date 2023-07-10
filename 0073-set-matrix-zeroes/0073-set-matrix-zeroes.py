@@ -5,20 +5,28 @@ class Solution:
         """
         row = len(matrix)
         col = len(matrix[0])
-        locations = set()
+        def helper(mr,mc):
+            for rin in range(row):
+                if matrix[rin][mc] !=0:
+                    matrix[rin][mc] = "0"
+                else:
+                    continue
+            for cin in range(col):
+                if matrix[mr][cin] != 0:
+                    matrix[mr][cin] = "0"
+                else:
+                    continue
+            return
         for r in range(row):
             for c in range(col):
                 if matrix[r][c] == 0:
-                    locations.add((r,c))
+                    helper(r,c)
                 else:
                     continue
-        def helper(mr,mc):
-            for rin in range(row):
-                matrix[rin][mc] = 0
-            for cin in range(col):
-                matrix[mr][cin] = 0
-            return
-        for r,c in locations:
-            helper(r,c)
+       
+        for r in range(row):
+            for c in range(col):
+                if matrix[r][c]=="0":
+                    matrix[r][c] = 0
         
                     
