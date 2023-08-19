@@ -1,15 +1,16 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rowDict = defaultdict(set)
-        colDict = defaultdict(set)
-        matDict = defaultdict(set)
-        for r in range(9):
-            for c in range(9):
+        row = defaultdict(set)
+        col = defaultdict(set)
+        matrix = defaultdict(set)
+        for r in range(len(board)):
+            for c in range(len(board[0])):
                 if board[r][c] == ".":
                     continue
-                if board[r][c] in rowDict[r] or board[r][c] in colDict[c] or board[r][c] in matDict[(r//3,c//3)]:
+                elif board[r][c] in row[r] or board[r][c] in col[c] or board[r][c] in matrix[(r//3,c//3)]:
                     return False
-                rowDict[r].add(board[r][c])
-                colDict[c].add(board[r][c])
-                matDict[(r//3,c//3)].add(board[r][c])
+                else:
+                    row[r].add(board[r][c])
+                    col[c].add(board[r][c])
+                    matrix[(r//3,c//3)].add(board[r][c])
         return True
